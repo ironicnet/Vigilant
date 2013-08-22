@@ -1,0 +1,34 @@
+/* Styles go here */
+
+.reporter
+{
+  text-decoration:underline;
+}
+.reporter.active h2
+{
+  font-weight:bolder;
+  
+}
+
+.mission
+{
+  border:1px solid black;
+  margin-top: 1px;
+  padding:2px;
+}
+.success
+{
+  background-color:rgb(155,215,155);
+}
+.fail
+{
+  background-color:rgb(215,155,155);
+}
+.pending
+{
+  background-color:rgb(155,155,215);
+}
+.onpath
+{
+  background-color:rgb(230,230,100);
+}
