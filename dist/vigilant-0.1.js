@@ -1,3 +1,10 @@
+/*
+License: The MIT License (MIT) 
+Author: Ezequiel Calderara
+Web: http://ironicnet.github.io/Vigilant/
+Repository: https://github.com/ironicnet/Vigilant
+Version: 0.1
+ */
 function Vigilant()
 {
   var self = this;

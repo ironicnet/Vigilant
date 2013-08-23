@@ -11,3 +11,10 @@ Each reporter usually have multiple missions assigned, each of which requires ce
 
 Each mission should call a callback when succeded.
 
+A nuget package was added, also you can install via the Nuget gallery: https://www.nuget.org/packages/Vigilant/
+
+To install Vigilant, run the following command in the Package Manager Console
+
+PM> Install-Package Vigilant
+
+Requires NuGet 0.1 or higher.
