@@ -4,7 +4,7 @@ reporter.handlesChain = true;
 reporter.missions = [
   {
   name: 'Konami',
-  requiresChain: ['Up','Up','Down','Down', 'Left', 'Right', 'Left', 'Right','A','B'],
+  requiresChain: ['UP','UP','DOWN','DOWN', 'LEFT', 'RIGHT', 'LEFT', 'RIGHT','A','B'],
   success: function() { Success(this, document.getElementById('div1'))},
   chainDrop: function () {return true},
 },
@@ -33,7 +33,7 @@ reporter2.handlesChain = true;
 reporter2.missions = [
   {
   name: 'Konami',
-  requiresChain: ['Up','Up','Down','Down', 'Left', 'Right', 'Left', 'Right','A','B'],
+  requiresChain: ['UP','UP','DOWN','DOWN', 'LEFT', 'RIGHT', 'LEFT', 'RIGHT','A','B'],
   success: function() { Success(this, document.getElementById('div1B'))},
   chainDrop: function () {return true},
 },
@@ -78,19 +78,18 @@ vigilant.reporters.push(reporter);
 vigilant.reporters.push(reporter2);
 vigilant.reportOnlyActive = false;
 vigilant.setActiveReporter(vigilant.getReporterIndex(reporter));
-vigilant.watchEvents = ['keyup']
+vigilant.watchEvents = ['keyup'];
 vigilant.broadcast = function (currentData)
 {
   var broadcaster = document.getElementById('broadcasting');
   broadcaster.innerHTML = currentData.toString();
-  console.log('Handled broadcast',broadcaster.outerHTML, currentData);
+  if (window.console) console.log('Handled broadcast',broadcaster.outerHTML, currentData);
 }
 vigilant.watch(window);
 
 function Success(mission, div)
 {
-  console.log(mission);
+  if (window.console) console.log('Mission success: ', mission);
   div.innerHTML ='Mission "' + mission.name + '" Successfull';
-  div.classList.remove("pending")
-  div.classList.add("success")
+  div.className = "mission success";
 }

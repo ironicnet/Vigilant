@@ -81,7 +81,21 @@ Vigilant.prototype.getKeyAbbr = function(ev, distinctAltKeys, includeEventType)
   if(includeEventType)
   {
   }
-  abbr+=ev.keyIdentifier.indexOf('+')==-1 ? ev.keyIdentifier : String.fromCharCode(ev.which);
+  var keyCode = "";
+  if (!ev.keyIdentifier)
+  {
+	  var charCode = ev.which || ev.charCode || ev.keyCode || 0
+	  keyCode = this.fromKeyCode(charCode);
+	  debugger;
+  } else
+  {
+	keyCode = ev.keyIdentifier.indexOf('+')==-1 ? ev.keyIdentifier : String.fromCharCode(ev.which);
+  }
+  if (ev.type=='keyup')
+  {
+	keyCode = keyCode.toUpperCase();
+  }
+  abbr += keyCode;
   return abbr;
 }
 
@@ -143,4 +157,77 @@ Reporter.prototype.report = function(eventName, data)
   {
     if (this.onpath) this.onpath(this.currentChain, data);
   }
+}
+Vigilant.prototype.fromKeyCode =function (n) {
+if( 47<=n && n<=90 ) return unescape('%'+(n).toString(16));
+if( 96<=n && n<=105) return 'NUM '+(n-96);
+if(112<=n && n<=135) return 'F'+(n-111);
+
+if(n==3)  return 'Cancel'; //DOM_VK_CANCEL
+if(n==6)  return 'Help';   //DOM_VK_HELP
+if(n==8)  return 'Backspace';
+if(n==9)  return 'Tab';
+if(n==12) return 'NUM 5';  //DOM_VK_CLEAR
+if(n==13) return 'Enter';
+if(n==16) return 'Shift';
+if(n==17) return 'Ctrl';
+if(n==18) return 'Alt';
+if(n==19) return 'Pause|Break';
+if(n==20) return 'CapsLock';
+if(n==27) return 'Esc';
+if(n==32) return 'Space';
+if(n==33) return 'PageUp';
+if(n==34) return 'PageDown';
+if(n==35) return 'End';
+if(n==36) return 'Home';
+if(n==37) return 'Left';
+if(n==38) return 'Up';
+if(n==39) return 'Right';
+if(n==40) return 'Down';
+if(n==42) return '*'; //Opera
+if(n==43) return '+'; //Opera
+if(n==44) return 'PrntScrn';
+if(n==45) return 'Insert';
+if(n==46) return 'Delete';
+
+if(n==91) return 'WIN';
+if(n==92) return 'WINR';
+if(n==93) return 'WINM';
+if(n==106) return '*';
+if(n==107) return '+';
+if(n==108) return 'Separator'; //DOM_VK_SEPARATOR
+if(n==109) return '-';
+if(n==110) return '.';
+if(n==111) return '/';
+if(n==144) return 'NumLock';
+if(n==145) return 'ScrollLock';
+
+//Media buttons (Inspiron laptops) 
+if(n==173) return 'ToggleMute';
+if(n==174) return 'VolumeDown';
+if(n==175) return 'VolumeUp';
+if(n==176) return 'Next';
+if(n==177) return 'Previous';
+if(n==178) return 'Stop';
+if(n==179) return 'Pause';
+
+if(n==182) return 'MyPc';
+if(n==183) return 'Calc';
+if(n==186) return ';';
+if(n==187) return '=';
+if(n==188) return ',';
+if(n==189) return '-';
+if(n==190) return '.';
+if(n==191) return '/';
+if(n==192) return '\'';
+if(n==219) return '[';
+if(n==220) return '\\';
+if(n==221) return ']';
+if(n==222) return '\'' ;
+if(n==224) return 'CMD';
+if(n==229) return 'IME';
+
+if(n==255) return 'Custom'; //Dell Home button (Inspiron laptops)
+
+return null;
 }
